@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important {
+            color: #336699;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Result</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <strong>Value 1: </strong> {{ value1 }} <br>
+    <strong>Value 2: </strong> {{ value2 }} <br>
+    <strong>Operation: </strong> {{ operation }} <br>
+    <strong>Result: </strong> {{ result }}
+
+    {% if data %}
+        <table>
+        <h1>Result history</h1>
+            {% for item in data %}
+
+                <h2>{{ item.get_result() }}</h2>
+                <!--- This will not work you have to think about it--->
+
+            {% endfor %}
+        </table>
+        {% else %}
+	        <h1>There are no calculations</h1>
+    {% endif %}
+
+
+
+
+
+{% endblock %}
